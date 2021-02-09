@@ -37,8 +37,7 @@ jQuery(document).ready(function() {
 		$('.player .cover').click( function(xx) {
 						  
 						//var img =  $(this).css('background-image') ;
-						var img =  $(this).attr('url_detail') ;
-							
+						var img =  $(this).attr('url_detail') ;							
 							
 						//img = img.replace( '.png', '_big.png');
 						//img = img.replace( 'url(', '');
