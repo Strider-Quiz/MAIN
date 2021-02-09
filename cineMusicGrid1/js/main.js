@@ -59,7 +59,7 @@ jQuery(document).ready(function() {
 									newWindow = window.open(img,'name','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=800,height=800,left=-1000,top=-1000',true);
 								else
 								{
-									newWindow.focus()
+									newWindow.focus();
 									newWindow.location = img;
 								}
 							}
