@@ -20,10 +20,52 @@ jQuery(document).ready(function() {
         var title = elem.text();
         var cover = elem.attr('cover');
         var artist = elem.attr('artist');
-
+		var url_detail = elem.attr('url_img');
+		var newWindow = null;
+		
+		//alert(url_detail);	
+		
+		
         $('.player .title').text(title);
         $('.player .artist').text(artist);
-        $('.player .cover').css('background-image','url(data/' + cover+')');;
+        $('.player .cover').css('background-image','url(data/' + cover+')');
+		
+		
+		$('.player .cover').attr('url_detail' , '');
+		$('.player .cover').attr('url_detail' , url_detail);
+		
+		$('.player .cover').click( function(xx) {
+						  
+						//var img =  $(this).css('background-image') ;
+						var img =  $(this).attr('url_detail') ;
+							
+							
+						//img = img.replace( '.png', '_big.png');
+						//img = img.replace( 'url(', '');
+						//img = img.replace( ')', '');
+						//img = img.replace( ')', '');
+						//img = img.replace( /["']/g, '');
+							
+							
+						var guid = jQuery.guid++;
+							
+						//alert(img);							
+						if ( img != '')
+							if (!!!newWindow)
+								newWindow = window.open(img,'name','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=800,height=800,left=-1000,top=-1000',true);
+							else
+							{
+								if (newWindow.closed == true)
+									newWindow = window.open(img,'name','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=800,height=800,left=-1000,top=-1000',true);
+								else
+								{
+									newWindow.focus()
+									newWindow.location = img;
+								}
+							}
+						  
+						  
+						});
 
         song = new Audio('data/' + url);
 
