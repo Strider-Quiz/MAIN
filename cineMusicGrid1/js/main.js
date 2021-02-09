@@ -14,6 +14,20 @@ jQuery(document).ready(function() {
     var song;
     var tracker = $('.tracker');
     var volume = $('.volume');
+	
+	function GetURLParameter(sParam)
+	{
+		var sPageURL = window.location.search.substring(1);
+		var sURLVariables = sPageURL.split('&');
+		for (var i = 0; i < sURLVariables.length; i++) 
+		{
+			var sParameterName = sURLVariables[i].split('=');
+			if (sParameterName[0] == sParam) 
+			{
+				return sParameterName[1];
+			}
+		}
+	}
 
     function initAudio(elem) {
         var url = elem.attr('audiourl');
@@ -23,10 +37,13 @@ jQuery(document).ready(function() {
 		var url_detail = elem.attr('url_img');
 		var newWindow = null;
 		
-		//alert(url_detail);	
 		
 		
-        $('.player .title').text(title);
+		//alert(hideTitle);	
+		
+		
+		$('.player .title').text(title);
+		
         $('.player .artist').text(artist);
         $('.player .cover').css('background-image','url(data/' + cover+')');
 		
@@ -183,7 +200,26 @@ jQuery(document).ready(function() {
 		song.addEventListener('loadedmetadata', function() {playAudio(); });
     });
 
-    // initialization - first element in playlist
+    
+	// inizializza i titoli della playlist se vanno nascosti
+	var next = $('.playlist li:first-child');
+	var hideTitle = GetURLParameter('hideTitle');	
+	var i;
+	
+	i = 0;
+	
+	if (hideTitle == 'YES')
+	
+	while (next.length != 0) 
+	{
+		  
+		i=i+1;
+		next[0].textContent = i;
+		next = next.next();
+	}
+	
+	
+	// initialization - first element in playlist
     initAudio($('.playlist li:first-child'));
 
     // set volume
